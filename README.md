@@ -11,6 +11,7 @@ Sitio web estático y gratuito (Astro + Tailwind CSS) con el menú de **Cafeter�
 - Menú sin precios por decisión de los dueños; soporte de precios ya integrado y desactivado.
 - Hero con imagen optimizada en WebP.
 - Mapa integrado (embed de Google Maps con carga perezosa) + enlaces "Cómo llegar" que abren Google Maps nativo.
+- Página imprimible `/qr` con el código QR para mesas (SVG vectorial generado en cada build).
 - SEO local: Open Graph + datos estructurados JSON-LD (Restaurant + Menu).
 - Accesible (HTML semántico, skip-link, contraste AA, `prefers-reduced-motion`) y responsive.
 - Hoja de estilos de impresión (el menú se puede imprimir desde el navegador).
@@ -74,6 +75,15 @@ que un error de edición no rompa el sitio.
 2. En Vercel, importa el repositorio (framework: Astro). Todo se detecta automáticamente.
 3. Añade la variable de entorno `PUBLIC_SHOW_PRICES=false` (o `true` cuando corresponda).
 4. Si usas un dominio propio, define `ASTRO_SITE` con la URL final para el SEO (canonical y Open Graph).
+5. Define `PUBLIC_MENU_URL` con la URL pública (es la que codifica el QR de mesas). Si Vercel
+   asigna otro subdominio o configuras uno propio, actualiza esta variable y reconstruye.
+
+## QR para las mesas
+
+- `scripts/generate-qr.mjs` genera `public/qr-menu.svg` y `public/qr-menu.png` en cada build
+  a partir de `PUBLIC_MENU_URL` (por defecto `https://cafeteria-continental-menu.vercel.app`).
+- La página `/qr` muestra una tarjeta imprimible con el QR, la marca y las instrucciones para
+  colocarlo en las mesas (no está indexada en buscadores).
 
 ## Decisión técnica: mapa de ubicación
 

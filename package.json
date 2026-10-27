@@ -6,7 +6,7 @@
   "description": "Menú digital de Cafetería Continental — El Matorral, Puerto del Rosario (Fuerteventura)",
   "scripts": {
     "dev": "npm run validate:menu && astro dev",
-    "build": "npm run validate:menu && astro build",
+    "build": "npm run validate:menu && node scripts/generate-qr.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "validate:menu": "node scripts/validate-menu.mjs",
@@ -20,8 +20,10 @@
   },
   "devDependencies": {
     "@astrojs/tailwind": "^5.1.5",
+    "@types/qrcode": "^1.5.6",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.1",
+    "qrcode": "^1.5.4",
     "typescript": "^5.4.2"
   },
   "allowScripts": {

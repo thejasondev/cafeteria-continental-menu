@@ -9,11 +9,15 @@ import Footer from '../components/Footer.astro'
 interface Props {
   title?: string
   description?: string
+  noindex?: boolean
+  ocultarChrome?: boolean
 }
 
 const {
   title = `${establecimiento.nombre} · Menú`,
   description = `Descubre la carta de ${establecimiento.nombre} en ${establecimiento.direccion}. Desayunos, bocadillos, comida casera y postres de elaboración diaria.`,
+  noindex = false,
+  ocultarChrome = false,
 } = Astro.props
 
 const url = new URL('/', Astro.site ?? 'https://cafeteria-continental-menu.vercel.app')
@@ -67,7 +71,7 @@ function menuSections() {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={url} />
 
@@ -94,10 +98,10 @@ function menuSections() {
     >
       Saltar al menú
     </a>
-    <Header />
+    {!ocultarChrome && <Header />}
     <main id="contenido">
       <slot />
     </main>
-    <Footer />
+    {!ocultarChrome && <Footer />}
   </body>
 </html>
