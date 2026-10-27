@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets'
+import hero from '../assets/hero.webp'
+import { establecimiento, mapsDirectionsUrl } from '../utils/menu'
+---
+
+<section id="inicio" class="relative flex min-h-[70svh] items-end overflow-hidden bg-espresso text-cream">
+  <Image
+    src={hero}
+    alt="Fachada de la Cafetería Continental en El Matorral"
+    width={1365}
+    height={768}
+    widths={[768, 1365]}
+    sizes="100vw"
+    quality={78}
+    fetchpriority="high"
+    loading="eager"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <div class="absolute inset-0 bg-gradient-to-t from-espresso/95 via-espresso/40 to-espresso/20" aria-hidden="true"></div>
+
+  <div class="relative z-10 mx-auto w-full max-w-5xl px-4 pb-12 pt-28">
+    <p class="mb-3 inline-flex items-center gap-2 rounded-full bg-cream/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-gold backdrop-blur-sm">
+      El Matorral · Puerto del Rosario
+    </p>
+    <h1 class="max-w-2xl font-display text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
+      {establecimiento.nombre}
+    </h1>
+    <p class="mt-4 max-w-xl text-lg text-cream/85">{establecimiento.eslogan}</p>
+
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <a href="#menu" class="btn-primary no-print">
+        Ver el menú
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14m0 0 6-6m-6 6-6-6"/></svg>
+      </a>
+      <a href={mapsDirectionsUrl} target="_blank" rel="noopener noreferrer" class="btn-outline no-print">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Cómo llegar
+      </a>
+    </div>
+  </div>
+</section>

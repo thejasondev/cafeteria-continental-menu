@@ -1,0 +1,33 @@
+---
+import type { MenuCategory } from '../utils/menu'
+import MenuItem from './MenuItem.astro'
+
+interface Props {
+  categoria: MenuCategory
+  index: number
+}
+
+const { categoria, index } = Astro.props
+---
+
+<section id={`cat-${categoria.id}`} data-categoria={categoria.id} class="anchor-offset scroll-mt-40">
+  <div class="mx-auto max-w-5xl px-4">
+    <div class={`flex items-center gap-4 ${index === 0 ? '' : 'mt-14 sm:mt-20'}`}>
+      <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-espresso text-2xl shadow-card" aria-hidden="true">
+        {categoria.icono}
+      </span>
+      <div>
+        <h2 class="font-display text-3xl font-bold tracking-tight sm:text-4xl">{categoria.nombre}</h2>
+        <span class="mt-1 block h-1 w-16 rounded-full bg-gold" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <ul class="mt-6 grid gap-4 md:grid-cols-2 md:gap-5">
+      {categoria.items.map((item) => (
+        <li>
+          <MenuItem item={item} />
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

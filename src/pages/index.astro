@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Hero from '../components/Hero.astro'
+import CategoryNav from '../components/CategoryNav.astro'
+import MenuSection from '../components/MenuSection.astro'
+import LocationSection from '../components/LocationSection.astro'
+import { categorias } from '../utils/menu'
+---
+
+<BaseLayout>
+  <Hero />
+  <CategoryNav />
+
+  <section id="menu" aria-label="Carta del menú">
+    <div class="mx-auto max-w-5xl px-4 pt-10 text-center sm:pt-14">
+      <p class="text-xs font-semibold uppercase tracking-widest text-caramel">Nuestra carta</p>
+      <h2 class="mt-2 font-display text-3xl font-bold sm:text-4xl">Elige lo que te apetezca</h2>
+      <p class="mx-auto mt-3 max-w-xl text-sm text-espresso/70">
+        Desayunos, bocadillos, comida casera y postres de elaboración diaria. Pregunta por los precios y platos del día en el local.
+      </p>
+    </div>
+
+    {categorias.map((categoria, index) => (
+      <MenuSection categoria={categoria} index={index} />
+    ))}
+  </section>
+
+  <LocationSection />
+</BaseLayout>

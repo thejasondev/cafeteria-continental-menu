@@ -1,0 +1,103 @@
+---
+import '@fontsource-variable/inter'
+import '@fontsource-variable/playfair-display'
+import '../styles/global.css'
+import { establecimiento, categorias } from '../utils/menu'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const {
+  title = `${establecimiento.nombre} · Menú`,
+  description = `Descubre la carta de ${establecimiento.nombre} en ${establecimiento.direccion}. Desayunos, bocadillos, comida casera y postres de elaboración diaria.`,
+} = Astro.props
+
+const url = new URL('/', Astro.site ?? 'https://cafeteria-continental-menu.vercel.app')
+const ogImage = new URL('/og-image.webp', url)
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['Restaurant', 'CafeOrCoffeeShop'],
+      name: establecimiento.nombre,
+      description: establecimiento.eslogan,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: establecimiento.direccion,
+        addressLocality: 'Puerto del Rosario',
+        addressRegion: 'Las Palmas',
+        addressCountry: 'ES',
+      },
+      telephone: establecimiento.telefono,
+      url: url.toString(),
+      image: ogImage.toString(),
+      priceRange: '$',
+      servesCuisine: ['Cafetería', 'Cocina casera'],
+    },
+    {
+      '@type': 'Menu',
+      name: `Menú de ${establecimiento.nombre}`,
+      hasMenuSection: menuSections(),
+    },
+  ],
+}
+
+function menuSections() {
+  return categorias.map((c) => ({
+    '@type': 'MenuSection',
+    name: c.nombre,
+    hasMenuItem: c.items.map((i) => ({
+      '@type': 'MenuItem',
+      name: i.nombre,
+      description: i.descripcion,
+    })),
+  }))
+}
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={url} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="es_ES" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+    />
+  </head>
+  <body>
+    <a
+      href="#menu"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-espresso focus:px-4 focus:py-2 focus:text-cream"
+    >
+      Saltar al menú
+    </a>
+    <Header />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

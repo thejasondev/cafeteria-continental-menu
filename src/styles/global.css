@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-cream font-sans text-espresso antialiased;
+  }
+
+  ::selection {
+    @apply bg-gold/30 text-espresso;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-caramel ring-offset-2 ring-offset-cream;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .chip {
+    @apply inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-espresso/10 bg-white/80 px-4 py-2 text-sm font-medium text-espresso/80 shadow-sm transition-colors hover:border-caramel/40 hover:text-caramel;
+  }
+
+  .chip[aria-current='true'] {
+    @apply border-espresso bg-espresso text-cream hover:border-espresso hover:text-cream;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-caramel px-6 py-3 text-sm font-semibold text-cream shadow-card transition-colors hover:bg-espresso;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-cream/40 bg-cream/10 px-6 py-3 text-sm font-semibold text-cream backdrop-blur-sm transition-colors hover:bg-cream hover:text-espresso;
+  }
+}
+
+@layer utilities {
+  .anchor-offset {
+    @apply scroll-mt-28;
+  }
+}
+
+@media print {
+  header,
+  nav,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .print-block {
+    page-break-inside: avoid;
+  }
+}

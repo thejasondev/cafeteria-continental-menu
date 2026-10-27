@@ -1,0 +1,25 @@
+---
+import type { MenuItem as MenuItemType } from '../utils/menu'
+import { formatearPrecio } from '../utils/menu'
+
+interface Props {
+  item: MenuItemType
+}
+
+const { item } = Astro.props
+const precio = formatearPrecio(item.precio)
+---
+
+<article class="print-block group flex h-full flex-col rounded-2xl bg-white p-5 shadow-card transition-shadow hover:shadow-md">
+  <div class="flex items-baseline gap-3">
+    <h3 class="font-display text-lg font-semibold leading-snug">{item.nombre}</h3>
+    {precio && <span class="mb-1 flex-1 border-b-2 border-dotted border-espresso/20" aria-hidden="true"></span>}
+    {precio && <span class="shrink-0 font-display text-lg font-bold text-caramel">{precio}</span>}
+    {item.destacado && (
+      <span class="ml-auto shrink-0 rounded-full bg-gold/15 px-2.5 py-1 text-xs font-semibold text-caramel">★ Destacado</span>
+    )}
+  </div>
+
+  {item.descripcion && <p class="mt-1.5 text-sm leading-relaxed text-espresso/70">{item.descripcion}</p>}
+  {item.detalle && <p class="mt-1.5 text-xs font-medium italic text-caramel">{item.detalle}</p>}
+</article>

@@ -1,0 +1,98 @@
+{
+  "establecimiento": {
+    "nombre": "Cafetería Continental",
+    "eslogan": "Comida casera, desayunos y buen café en El Matorral",
+    "direccion": "C. El Bernegal 1, El Matorral, 35610 Puerto del Rosario, Fuerteventura",
+    "telefono": "+34 928 77 05 78",
+    "horario": ["Lunes a viernes: 06:30 – 16:00", "Sábados y domingos: 07:00 – 14:00"],
+    "notaHorario": "Horario orientativo — confirmar con el establecimiento"
+  },
+  "categorias": [
+    {
+      "id": "cafes-y-calientes",
+      "nombre": "Cafés y Calientes",
+      "icono": "☕",
+      "items": [
+        { "nombre": "Café solo", "descripcion": "Café recién hecho, intenso y aromático." },
+        { "nombre": "Café con leche", "descripcion": "Suave café con leche perfecto para acompañar el desayuno." },
+        { "nombre": "Cortado", "descripcion": "Un toque de leche para los que lo prefieren corto." },
+        { "nombre": "Café bonbon", "descripcion": "Café condensado, dulce y cremoso." },
+        { "nombre": "Cola Cao o chocolate", "descripcion": "Caliente, cremoso y reconfortante." },
+        { "nombre": "Té e infusiones", "descripcion": "Variedad de té e infusiones calientes." }
+      ]
+    },
+    {
+      "id": "bebidas-frias",
+      "nombre": "Bebidas Frías",
+      "icono": "🧊",
+      "items": [
+        { "nombre": "Zumo natural de naranja", "descripcion": "Exprimido al momento." },
+        { "nombre": "Batidos", "descripcion": "De vainilla, fresa o chocolate." },
+        { "nombre": "Granizado de limón", "descripcion": "Fresco y refrescante." },
+        { "nombre": "Refrescos", "descripcion": "Lata o vaso con hielo." },
+        { "nombre": "Agua mineral", "descripcion": "Con o sin gas." },
+        { "nombre": "Cerveza bien fría", "descripcion": "Cañas y botellines a buena temperatura." }
+      ]
+    },
+    {
+      "id": "desayunos",
+      "nombre": "Desayunos",
+      "icono": "🍳",
+      "items": [
+        { "nombre": "Tostada con mantequilla y mermelada", "descripcion": "Pan recién tostado, mantequilla y mermelada." },
+        { "nombre": "Tostada con tomate y aceite", "descripcion": "Tomate natural, aceite de oliva y sal." },
+        { "nombre": "Tostada de aguacate", "descripcion": "Aguacate fresco sobre pan tostado." },
+        { "nombre": "Pan con aceite y tomate", "descripcion": "El clásico que nunca falla." },
+        { "nombre": "Bollos y bollería", "descripcion": "Repostería variada para empezar el día." },
+        { "nombre": "Desayuno combinado", "descripcion": "Café o infusión con tostada o bollería a elegir." }
+      ]
+    },
+    {
+      "id": "bocadillos",
+      "nombre": "Bocadillos y Sándwiches",
+      "icono": "🥪",
+      "items": [
+        { "nombre": "Bocadillo de pata asada", "descripcion": "El favorito de la casa, jugoso y generoso.", "destacado": true },
+        { "nombre": "Bocadillo de tortilla", "descripcion": "Tortilla de patatas en pan crujiente." },
+        { "nombre": "Bocadillo mixto", "descripcion": "Jamón y queso, caliente o frío." },
+        { "nombre": "Bocadillo de lomo", "descripcion": "Lomo adobado con guarnición a elegir." },
+        { "nombre": "Sándwich de huevo frito", "descripcion": "Huevo frito en sándwich, sencillamente bueno." },
+        { "nombre": "Cubano", "descripcion": "Sándwich con jamón, cerdo y queso." },
+        { "nombre": "Sándwich vegetal", "descripcion": "Verduras frescas y queso." },
+        { "nombre": "Alioli", "descripcion": "Salsa casera para acompañar, cremosa y sabrosa." }
+      ]
+    },
+    {
+      "id": "comida-casera",
+      "nombre": "Comida Casera y Menú del Día",
+      "icono": "🍲",
+      "items": [
+        { "nombre": "Menú del día", "descripcion": "Primero, segundo, postre o café. Cambia cada día con la cocina casera.", "destacado": true },
+        { "nombre": "Raciones caseras", "descripcion": "Generosas y de elaboración diaria." },
+        { "nombre": "Platos de raíces cubanas", "descripcion": "Toques de la cocina cubana que nos encantan compartir.", "detalle": "Especialidad los domingos" }
+      ]
+    },
+    {
+      "id": "postres",
+      "nombre": "Postres Caseros",
+      "icono": "🍮",
+      "items": [
+        { "nombre": "Pudín de caramelo", "descripcion": "Flan casero cremoso con caramelo, el postre de la casa.", "destacado": true },
+        { "nombre": "Quesillo", "descripcion": "El dulce tradicional canario hecho en casa." },
+        { "nombre": "Tarta casera", "descripcion": "Según el día: pregunta por la tarta disponible." },
+        { "nombre": "Fruta del tiempo", "descripcion": "Selección fresca de fruta." }
+      ]
+    },
+    {
+      "id": "tapas",
+      "nombre": "Tapas y Para Compartir",
+      "icono": "🫒",
+      "items": [
+        { "nombre": "Papas arrugadas con mojo", "descripcion": "El clásico canario con mojo picón y mojo verde." },
+        { "nombre": "Queso canario", "descripcion": "Queso de la isla con mojo." },
+        { "nombre": "Tapas variadas", "descripcion": "Pequeñas raciones para compartir." },
+        { "nombre": "Aceitunas", "descripcion": "La tapa de siempre." }
+      ]
+    }
+  ]
+}
