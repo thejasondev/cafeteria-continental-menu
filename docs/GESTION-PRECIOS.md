@@ -37,17 +37,33 @@ Web publicada con los precios nuevos (≈ 1 minuto)
 
 ### 1. Crear la hoja de precios
 
-1. Crea una hoja de cálculo nueva en <https://sheets.new> llamada **"Precios Continental"**.
-2. Importa el archivo **`docs/precios-iniciales.csv`** (ya trae los 71 productos con precios de
-   ejemplo para probar):
-   - Descárgalo desde
-     <https://github.com/thejasondev/cafeteria-continental-menu/blob/main/docs/precios-iniciales.csv>
-     (botón **Download** / **Descargar**).
-   - En Google Sheets: **Archivo > Importar > Subir** y selecciona el archivo.
-   - Elige **Reemplazar hoja de cálculo**.
-3. Sustituye los precios de ejemplo por los reales cuando los dueños den luz verde.
-4. Comparte la hoja con los dueños (botón **Compartir**, permiso **Editor**). Recomendado: por
-   correo con sus cuentas de Google. Alternativa: enlace con permiso de edición (menos seguro).
+El archivo **`docs/precios-iniciales.csv`** ya trae los 71 productos con precios de ejemplo.
+Descárgalo desde
+<https://github.com/thejasondev/cafeteria-continental-menu/blob/main/docs/precios-iniciales.csv>
+(botón **Download** / **Descargar**).
+
+**Opción A — la más rápida (recomendada):**
+
+1. Entra en <https://drive.google.com> → **Nuevo > Subir archivo** y sube el CSV.
+2. Clic derecho sobre el archivo → **Abrir con > Hojas de cálculo de Google**.
+3. En la hoja: **Archivo > Guardar como Hoja de cálculo de Google**.
+4. Renómbrala arriba a la izquierda como **"Precios Continental"**.
+
+**Opción B — crear e importar:**
+
+1. Abre <https://sheets.new> y renómbrala **"Precios Continental"**.
+2. **Archivo > Importar > Subir** → selecciona el CSV → **Reemplazar hoja de cálculo**.
+
+> **Importante:** renombrar el archivo `.csv` **no** lo convierte en una hoja de Google. Debe ser
+> una **Hoja de cálculo de Google** (no un CSV) para poder abrir **Extensiones > Apps Script** y
+> para que `SHEET_ID` funcione.
+
+**Después, en cualquiera de los dos casos:**
+
+- Copia el `SHEET_ID`: en la URL `docs.google.com/spreadsheets/d/`**`<SHEET_ID>`**`/edit`.
+- Sustituye los precios de ejemplo por los reales cuando los dueños den luz verde.
+- Comparte la hoja con los dueños (**Compartir**, permiso **Editor**). Recomendado: por correo con
+  sus cuentas de Google. Alternativa: enlace con permiso de edición (menos seguro).
 
 > `docs/precios-template.csv` es la plantilla **vacía** que se regenera con `npm run export:precios`
 > cuando cambia la lista de productos. Para la primera puesta en marcha usa `precios-iniciales.csv`.
