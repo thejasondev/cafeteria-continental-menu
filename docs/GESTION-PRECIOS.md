@@ -38,10 +38,19 @@ Web publicada con los precios nuevos (≈ 1 minuto)
 ### 1. Crear la hoja de precios
 
 1. Crea una hoja de cálculo nueva en <https://sheets.new> llamada **"Precios Continental"**.
-2. Importa la plantilla `docs/precios-template.csv`
-   (Archivo > Importar > Subir > reemplazar hoja de cálculo actual).
-3. Comparte la hoja con los dueños (botón **Compartir**, permiso **Editor**). Recomendado: por
+2. Importa el archivo **`docs/precios-iniciales.csv`** (ya trae los 71 productos con precios de
+   ejemplo para probar):
+   - Descárgalo desde
+     <https://github.com/thejasondev/cafeteria-continental-menu/blob/main/docs/precios-iniciales.csv>
+     (botón **Download** / **Descargar**).
+   - En Google Sheets: **Archivo > Importar > Subir** y selecciona el archivo.
+   - Elige **Reemplazar hoja de cálculo**.
+3. Sustituye los precios de ejemplo por los reales cuando los dueños den luz verde.
+4. Comparte la hoja con los dueños (botón **Compartir**, permiso **Editor**). Recomendado: por
    correo con sus cuentas de Google. Alternativa: enlace con permiso de edición (menos seguro).
+
+> `docs/precios-template.csv` es la plantilla **vacía** que se regenera con `npm run export:precios`
+> cuando cambia la lista de productos. Para la primera puesta en marcha usa `precios-iniciales.csv`.
 
 ### 2. Pegar el Apps Script
 
