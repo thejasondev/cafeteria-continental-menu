@@ -1,6 +1,6 @@
 ---
 import type { MenuItem as MenuItemType } from '../utils/menu'
-import { formatearPrecio } from '../utils/menu'
+import { formatearPrecio, obtenerAlergenos } from '../utils/menu'
 
 interface Props {
   item: MenuItemType
@@ -8,6 +8,7 @@ interface Props {
 
 const { item } = Astro.props
 const precio = formatearPrecio(item.precio)
+const listaAlergenos = obtenerAlergenos(item)
 ---
 
 <article class="print-block group flex h-full flex-col rounded-2xl bg-white p-5 shadow-card transition-shadow hover:shadow-md">
@@ -22,4 +23,27 @@ const precio = formatearPrecio(item.precio)
 
   {item.descripcion && <p class="mt-1.5 text-sm leading-relaxed text-espresso/70">{item.descripcion}</p>}
   {item.detalle && <p class="mt-1.5 text-xs font-medium italic text-caramel">{item.detalle}</p>}
+
+  <div class="mt-auto pt-3">
+    {listaAlergenos.length > 0 ? (
+      <ul class="flex flex-wrap items-center gap-1.5" aria-label="Alérgenos">
+        {listaAlergenos.map((a) => (
+          <li>
+            <span
+              class="chip-alergeno"
+              role="img"
+              title={`Contiene ${a.nombre}${a.deducido ? ' (deducido)' : ''}`}
+              aria-label={`Contiene ${a.nombre}${a.deducido ? ', deducido por los ingredientes' : ''}`}
+            >
+              {a.emoji}{a.deducido && <sup aria-hidden="true">*</sup>}
+            </span>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="inline-flex items-center gap-1 text-xs font-medium text-emerald-700/80">
+        <span aria-hidden="true">✓</span> Sin alérgenos destacados
+      </p>
+    )}
+  </div>
 </article>

@@ -12,13 +12,23 @@ const { categoria, index } = Astro.props
 
 <section id={`cat-${categoria.id}`} data-categoria={categoria.id} class="anchor-offset scroll-mt-40">
   <div class="mx-auto max-w-5xl px-4">
-    <div class={`flex items-center gap-4 ${index === 0 ? '' : 'mt-14 sm:mt-20'}`}>
+    <div class={`flex items-start gap-4 ${index === 0 ? '' : 'mt-14 sm:mt-20'}`}>
       <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-espresso text-2xl shadow-card" aria-hidden="true">
         {categoria.icono}
       </span>
       <div>
         <h2 class="font-display text-3xl font-bold tracking-tight sm:text-4xl">{categoria.nombre}</h2>
         <span class="mt-1 block h-1 w-16 rounded-full bg-gold" aria-hidden="true"></span>
+        {(categoria.porcion || categoria.descripcion) && (
+          <div class="mt-2 flex flex-wrap items-center gap-2">
+            {categoria.porcion && (
+              <span class="rounded-full bg-gold/15 px-2.5 py-1 text-xs font-semibold text-caramel">{categoria.porcion}</span>
+            )}
+            {categoria.descripcion && (
+              <p class="text-sm text-espresso/60">{categoria.descripcion}</p>
+            )}
+          </div>
+        )}
       </div>
     </div>
 

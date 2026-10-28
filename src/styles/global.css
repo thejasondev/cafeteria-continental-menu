@@ -54,6 +54,14 @@
   .btn-outline {
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-cream/40 bg-cream/10 px-6 py-3 text-sm font-semibold text-cream backdrop-blur-sm transition-colors hover:bg-cream hover:text-espresso;
   }
+
+  .chip-alergeno {
+    @apply inline-flex h-7 min-w-[1.75rem] items-center justify-center gap-0.5 rounded-lg border border-espresso/10 bg-cream px-1.5 text-base leading-none shadow-sm;
+  }
+
+  .chip-alergeno sup {
+    @apply text-[0.55rem] font-bold text-caramel;
+  }
 }
 
 @layer utilities {

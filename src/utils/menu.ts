@@ -1,18 +1,27 @@
 import menu from '../data/menu.json'
 import { SHOW_PRICES } from './config'
 
+export interface Alergeno {
+  emoji: string
+  nombre: string
+}
+
 export interface MenuItem {
   nombre: string
   descripcion?: string
   detalle?: string
   precio?: number | null
   destacado?: boolean
+  alergenos?: string[]
+  alergenosDeducidos?: string[]
 }
 
 export interface MenuCategory {
   id: string
   nombre: string
   icono: string
+  descripcion?: string
+  porcion?: string
   items: MenuItem[]
 }
 
@@ -26,14 +35,20 @@ export interface Establecimiento {
 }
 
 export interface MenuData {
+  alergenos: Record<string, Alergeno>
+  notaAlergenos: string
   establecimiento: Establecimiento
   categorias: MenuCategory[]
 }
 
 export const data = menu as unknown as MenuData
 
-export const { establecimiento } = data
-export const categorias = data.categorias
+export const { establecimiento, categorias, alergenos, notaAlergenos } = data
+
+export const alergenosList = Object.entries(alergenos).map(([clave, valor]) => ({
+  clave,
+  ...valor,
+}))
 
 const TELEFONO_ENLACE = establecimiento.telefono.replace(/[^\d+]/g, '')
 
@@ -53,3 +68,10 @@ export const formatearPrecio = (precio: number | null | undefined): string | nul
   if (!SHOW_PRICES || precio == null) return null
   return `${precio.toFixed(2).replace('.', ',')} €`
 }
+
+export const obtenerAlergenos = (item: MenuItem) =>
+  (item.alergenos ?? []).map((clave) => ({
+    clave,
+    ...(alergenos[clave] ?? { emoji: '?', nombre: clave }),
+    deducido: item.alergenosDeducidos?.includes(clave) ?? false,
+  }))

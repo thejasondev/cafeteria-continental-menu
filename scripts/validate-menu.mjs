@@ -26,6 +26,20 @@ else {
   }
 }
 
+const alergenos = menu?.alergenos
+const clavesAlergenos = new Set()
+if (!alergenos || typeof alergenos !== 'object' || Object.keys(alergenos).length === 0) {
+  errors.push('"alergenos" debe ser un objeto no vacío')
+} else {
+  for (const [clave, valor] of Object.entries(alergenos)) {
+    requireStr(valor, `alergenos.${clave}`, 'emoji')
+    requireStr(valor, `alergenos.${clave}`, 'nombre')
+    clavesAlergenos.add(clave)
+  }
+}
+
+requireStr(menu, 'menu', 'notaAlergenos')
+
 const categorias = menu?.categorias
 if (!Array.isArray(categorias) || categorias.length === 0) {
   errors.push('"categorias" debe ser un array no vacío')
@@ -38,6 +52,9 @@ if (!Array.isArray(categorias) || categorias.length === 0) {
     requireStr(cat, base, 'icono')
     if (cat.id && ids.has(cat.id)) errors.push(`categorias[${ci}].id duplicado: "${cat.id}"`)
     if (cat.id) ids.add(cat.id)
+    if (cat.porcion != null && typeof cat.porcion !== 'string') {
+      errors.push(`${base}.porcion debe ser un texto`)
+    }
     if (!Array.isArray(cat.items) || cat.items.length === 0) {
       errors.push(`${base}.items debe ser un array no vacío`)
     } else {
@@ -49,6 +66,28 @@ if (!Array.isArray(categorias) || categorias.length === 0) {
         }
         if (item.destacado != null && typeof item.destacado !== 'boolean') {
           errors.push(`${itemBase}.destacado debe ser true/false`)
+        }
+        if (item.alergenos != null) {
+          if (!Array.isArray(item.alergenos)) {
+            errors.push(`${itemBase}.alergenos debe ser un array`)
+          } else {
+            item.alergenos.forEach((clave) => {
+              if (!clavesAlergenos.has(clave)) {
+                errors.push(`${itemBase}.alergenos contiene una clave inválida: "${clave}"`)
+              }
+            })
+          }
+        }
+        if (item.alergenosDeducidos != null) {
+          if (!Array.isArray(item.alergenosDeducidos)) {
+            errors.push(`${itemBase}.alergenosDeducidos debe ser un array`)
+          } else {
+            item.alergenosDeducidos.forEach((clave) => {
+              if (!item.alergenos?.includes(clave)) {
+                errors.push(`${itemBase}.alergenosDeducidos "${clave}" no figura en alergenos`)
+              }
+            })
+          }
         }
       })
     }

@@ -1,4 +1,13 @@
 {
+  "alergenos": {
+    "gluten": { "emoji": "🌾", "nombre": "Gluten" },
+    "huevo": { "emoji": "🥚", "nombre": "Huevo" },
+    "lacteos": { "emoji": "🥛", "nombre": "Lácteos" },
+    "pescado": { "emoji": "🐟", "nombre": "Pescado" },
+    "moluscos": { "emoji": "🐚", "nombre": "Moluscos" },
+    "crustaceos": { "emoji": "🦀", "nombre": "Crustáceos" }
+  },
+  "notaAlergenos": "Los alérgenos marcados con asterisco (*) han sido deducidos lógicamente por los ingredientes, al no aparecer en el menú impreso.",
   "establecimiento": {
     "nombre": "Cafetería Continental",
     "eslogan": "Comida casera, desayunos y buen café en El Matorral",
@@ -9,89 +18,157 @@
   },
   "categorias": [
     {
-      "id": "cafes-y-calientes",
-      "nombre": "Cafés y Calientes",
-      "icono": "☕",
-      "items": [
-        { "nombre": "Café solo", "descripcion": "Café recién hecho, intenso y aromático." },
-        { "nombre": "Café con leche", "descripcion": "Suave café con leche perfecto para acompañar el desayuno." },
-        { "nombre": "Cortado", "descripcion": "Un toque de leche para los que lo prefieren corto." },
-        { "nombre": "Café bonbon", "descripcion": "Café condensado, dulce y cremoso." },
-        { "nombre": "Cola Cao o chocolate", "descripcion": "Caliente, cremoso y reconfortante." },
-        { "nombre": "Té e infusiones", "descripcion": "Variedad de té e infusiones calientes." }
-      ]
-    },
-    {
-      "id": "bebidas-frias",
-      "nombre": "Bebidas Frías",
-      "icono": "🧊",
-      "items": [
-        { "nombre": "Zumo natural de naranja", "descripcion": "Exprimido al momento." },
-        { "nombre": "Batidos", "descripcion": "De vainilla, fresa o chocolate." },
-        { "nombre": "Granizado de limón", "descripcion": "Fresco y refrescante." },
-        { "nombre": "Refrescos", "descripcion": "Lata o vaso con hielo." },
-        { "nombre": "Agua mineral", "descripcion": "Con o sin gas." },
-        { "nombre": "Cerveza bien fría", "descripcion": "Cañas y botellines a buena temperatura." }
-      ]
-    },
-    {
-      "id": "desayunos",
-      "nombre": "Desayunos",
-      "icono": "🍳",
-      "items": [
-        { "nombre": "Tostada con mantequilla y mermelada", "descripcion": "Pan recién tostado, mantequilla y mermelada." },
-        { "nombre": "Tostada con tomate y aceite", "descripcion": "Tomate natural, aceite de oliva y sal." },
-        { "nombre": "Tostada de aguacate", "descripcion": "Aguacate fresco sobre pan tostado." },
-        { "nombre": "Pan con aceite y tomate", "descripcion": "El clásico que nunca falla." },
-        { "nombre": "Bollos y bollería", "descripcion": "Repostería variada para empezar el día." },
-        { "nombre": "Desayuno combinado", "descripcion": "Café o infusión con tostada o bollería a elegir." }
-      ]
-    },
-    {
       "id": "bocadillos",
-      "nombre": "Bocadillos y Sándwiches",
+      "nombre": "Bocadillos",
+      "icono": "🥖",
+      "descripcion": "Normales: ensalada y ali oli · Especiales: huevo y queso",
+      "items": [
+        { "nombre": "Pata", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Pepito", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Pollo (desmechado)", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Pechuga de pollo (filete)", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Pechuga empanada", "alergenos": ["gluten", "huevo", "lacteos"] },
+        { "nombre": "Pescado (filete)", "alergenos": ["gluten", "pescado"] },
+        { "nombre": "Calamar", "alergenos": ["gluten", "moluscos"] },
+        { "nombre": "Bacon", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Lomo", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Hachada", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Mixta (jamón y queso)", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Queso tierno", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Tortilla francesa", "alergenos": ["gluten", "huevo"] },
+        { "nombre": "Tortilla francesa (jamón y queso)", "alergenos": ["gluten", "huevo", "lacteos"] },
+        { "nombre": "Tortilla francesa (queso)", "alergenos": ["gluten", "huevo", "lacteos"] },
+        { "nombre": "Tortilla francesa (jamón serrano)", "alergenos": ["gluten", "huevo", "lacteos"] },
+        { "nombre": "Tortilla francesa (tomate, catalana y aceite de oliva)", "alergenos": ["gluten", "huevo"] },
+        { "nombre": "Jamón serrano (tomate catalana)", "alergenos": ["gluten"] },
+        { "nombre": "Vegetal atún", "descripcion": "Ensalada, atún, huevo, aceite y maíz", "alergenos": ["gluten", "huevo", "pescado"] },
+        { "nombre": "Bacon doble y mayo", "alergenos": ["gluten", "huevo", "lacteos"] },
+        { "nombre": "Continental", "descripcion": "Pollo, lechuga, cebolla, tomate, huevo, queso y ali oli", "alergenos": ["gluten", "huevo", "lacteos"], "destacado": true }
+      ]
+    },
+    {
+      "id": "sandwiches",
+      "nombre": "Sándwiches",
       "icono": "🥪",
       "items": [
-        { "nombre": "Bocadillo de pata asada", "descripcion": "El favorito de la casa, jugoso y generoso.", "destacado": true },
-        { "nombre": "Bocadillo de tortilla", "descripcion": "Tortilla de patatas en pan crujiente." },
-        { "nombre": "Bocadillo mixto", "descripcion": "Jamón y queso, caliente o frío." },
-        { "nombre": "Bocadillo de lomo", "descripcion": "Lomo adobado con guarnición a elegir." },
-        { "nombre": "Sándwich de huevo frito", "descripcion": "Huevo frito en sándwich, sencillamente bueno." },
-        { "nombre": "Cubano", "descripcion": "Sándwich con jamón, cerdo y queso." },
-        { "nombre": "Sándwich vegetal", "descripcion": "Verduras frescas y queso." },
-        { "nombre": "Alioli", "descripcion": "Salsa casera para acompañar, cremosa y sabrosa." }
+        { "nombre": "Pollo", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Bacon", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Lomo", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Mixto", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Vikingo", "descripcion": "Jamón, queso y huevo", "alergenos": ["gluten", "huevo", "lacteos"] },
+        { "nombre": "Vegetal atún", "descripcion": "Ensalada, huevo, atún y mayonesa", "alergenos": ["gluten", "huevo", "pescado"] },
+        { "nombre": "Continental", "descripcion": "Pollo, lechuga, cebolla, tomate, huevo, queso y ali oli", "alergenos": ["gluten", "huevo", "lacteos"] },
+        { "nombre": "Tortaditas pan", "descripcion": "Hamburguesa, trigo", "alergenos": ["gluten", "lacteos"] }
       ]
     },
     {
-      "id": "comida-casera",
-      "nombre": "Comida Casera y Menú del Día",
-      "icono": "🍲",
+      "id": "hamburguesas",
+      "nombre": "Hamburguesas",
+      "icono": "🍔",
       "items": [
-        { "nombre": "Menú del día", "descripcion": "Primero, segundo, postre o café. Cambia cada día con la cocina casera.", "destacado": true },
-        { "nombre": "Raciones caseras", "descripcion": "Generosas y de elaboración diaria." },
-        { "nombre": "Platos de raíces cubanas", "descripcion": "Toques de la cocina cubana que nos encantan compartir.", "detalle": "Especialidad los domingos" }
+        { "nombre": "Normal carne", "descripcion": "Ensalada, queso y cebolla", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Normal pollo", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Especial carne", "descripcion": "Ensalada, huevo, jamón, queso y cebolla", "alergenos": ["gluten", "huevo", "lacteos"] },
+        { "nombre": "Especial pollo", "alergenos": ["gluten", "huevo", "lacteos"] },
+        { "nombre": "Continental carne", "descripcion": "Ensalada, huevo, jamón, queso, bacon y cebolla", "alergenos": ["gluten", "huevo", "lacteos"], "destacado": true },
+        { "nombre": "Continental pollo", "alergenos": ["gluten", "huevo", "lacteos"] }
       ]
     },
     {
-      "id": "postres",
-      "nombre": "Postres Caseros",
-      "icono": "🍮",
+      "id": "ensaladas",
+      "nombre": "Ensaladas",
+      "icono": "🥗",
       "items": [
-        { "nombre": "Pudín de caramelo", "descripcion": "Flan casero cremoso con caramelo, el postre de la casa.", "destacado": true },
-        { "nombre": "Quesillo", "descripcion": "El dulce tradicional canario hecho en casa." },
-        { "nombre": "Tarta casera", "descripcion": "Según el día: pregunta por la tarta disponible." },
-        { "nombre": "Fruta del tiempo", "descripcion": "Selección fresca de fruta." }
+        { "nombre": "Mixta", "alergenos": ["gluten", "huevo", "pescado"], "alergenosDeducidos": ["pescado"] },
+        { "nombre": "Continental", "descripcion": "Ensalada, gambas, queso, huevo, atún y cangrejo", "alergenos": ["gluten", "crustaceos", "huevo", "pescado", "lacteos"], "destacado": true }
       ]
     },
     {
-      "id": "tapas",
-      "nombre": "Tapas y Para Compartir",
-      "icono": "🫒",
+      "id": "raciones",
+      "nombre": "Raciones",
+      "icono": "🍟",
+      "porcion": "1/2 ración / ración",
       "items": [
-        { "nombre": "Papas arrugadas con mojo", "descripcion": "El clásico canario con mojo picón y mojo verde." },
-        { "nombre": "Queso canario", "descripcion": "Queso de la isla con mojo." },
-        { "nombre": "Tapas variadas", "descripcion": "Pequeñas raciones para compartir." },
-        { "nombre": "Aceitunas", "descripcion": "La tapa de siempre." }
+        { "nombre": "Pata de cerdo", "alergenos": ["gluten"] },
+        { "nombre": "Pechuga de pollo", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Papas arrugadas", "alergenos": [] },
+        { "nombre": "Mejillones a la plancha", "alergenos": ["moluscos"] },
+        { "nombre": "Croquetas caseras", "descripcion": "Pollo, jamón, perejil y espinacas o boletus", "alergenos": ["gluten", "huevo", "lacteos"] }
+      ]
+    },
+    {
+      "id": "papas-locas",
+      "nombre": "Papas Locas",
+      "icono": "🍟",
+      "porcion": "1/2 ración / ración",
+      "items": [
+        { "nombre": "Papas Locas", "alergenos": ["gluten", "huevo", "lacteos"], "alergenosDeducidos": ["lacteos"] },
+        { "nombre": "Papas", "descripcion": "Jamón, queso gratinado y tres salsas", "alergenos": ["gluten", "huevo", "lacteos"], "alergenosDeducidos": ["lacteos"] }
+      ]
+    },
+    {
+      "id": "combinados",
+      "nombre": "Combinados",
+      "icono": "🍽️",
+      "porcion": "1/2 ración / ración",
+      "items": [
+        { "nombre": "Pechuga empanada", "alergenos": ["gluten", "huevo", "lacteos"], "alergenosDeducidos": ["lacteos"] },
+        { "nombre": "Filete de pescado", "alergenos": ["gluten", "pescado"] },
+        { "nombre": "Pepito", "descripcion": "Ternera", "alergenos": ["gluten", "lacteos"] },
+        { "nombre": "Bacon", "descripcion": "Papas fritas, salchicha y huevo", "alergenos": ["gluten", "huevo", "lacteos"], "alergenosDeducidos": ["lacteos"] }
+      ]
+    },
+    {
+      "id": "domingos",
+      "nombre": "Domingos",
+      "icono": "🇨🇺",
+      "descripcion": "Especialidad de los domingos",
+      "items": [
+        {
+          "nombre": "Plato especial comida cubana",
+          "descripcion": "Arroz congri o blanco, cerdo a la cazuela, carne mechada, yuca con mojo, plátano maduro y chicharrita",
+          "detalle": "Postre a elegir (dependerá del postre elegido)",
+          "alergenos": ["lacteos", "huevo", "gluten"],
+          "alergenosDeducidos": ["gluten"],
+          "destacado": true
+        }
+      ]
+    },
+    {
+      "id": "bebidas",
+      "nombre": "Bebidas",
+      "icono": "🥤",
+      "items": [
+        { "nombre": "Zumo natural", "descripcion": "Naranja", "alergenos": [] },
+        { "nombre": "Zumos LAMBA", "descripcion": "Mango, pera-piña o melocotón", "detalle": "Pueden contener sulfitos", "alergenos": [] },
+        { "nombre": "Refrescos", "descripcion": "Coca-Cola, Fanta, Seven Up, Clipper fresa, Appletiser, tónica, Nestea, Red Bull", "alergenos": [] },
+        { "nombre": "Aguas", "descripcion": "Agua mineral 50 cl o agua natural 50 cl", "alergenos": [] }
+      ]
+    },
+    {
+      "id": "cafes",
+      "nombre": "Cafés e Infusiones",
+      "icono": "☕",
+      "descripcion": "Todos los que llevan leche o condensada contienen lácteos",
+      "items": [
+        { "nombre": "Café", "alergenos": [] },
+        { "nombre": "Café americano", "alergenos": [] },
+        { "nombre": "Cortado corto", "alergenos": ["lacteos"] },
+        { "nombre": "Cortado largo", "alergenos": ["lacteos"] },
+        { "nombre": "Cortado con condensada corto", "alergenos": ["lacteos"] },
+        { "nombre": "Cortado con condensada largo", "alergenos": ["lacteos"] },
+        { "nombre": "Cortado leche-leche corto", "alergenos": ["lacteos"] },
+        { "nombre": "Cortado leche-leche largo", "alergenos": ["lacteos"] },
+        { "nombre": "Café con leche", "alergenos": ["lacteos"] },
+        { "nombre": "Descafeinado (corto o largo)", "alergenos": [] },
+        { "nombre": "Descafeinado leche-leche (corto o largo)", "alergenos": ["lacteos"] },
+        { "nombre": "Descafeinado con agua (corto o largo)", "alergenos": [] },
+        { "nombre": "Carajillo", "alergenos": [] },
+        { "nombre": "Capuchino", "alergenos": ["lacteos"] },
+        { "nombre": "Infusiones", "alergenos": [] },
+        { "nombre": "Cola Cao", "alergenos": ["lacteos", "gluten"], "alergenosDeducidos": ["gluten"] },
+        { "nombre": "Vaso de leche", "alergenos": ["lacteos"] },
+        { "nombre": "Vaso de agua natural", "alergenos": [] }
       ]
     }
   ]
