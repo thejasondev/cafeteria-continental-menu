@@ -16,7 +16,7 @@ function doGet(e) {
     return respuestaJson({ error: 'no autorizado' })
   }
 
-  var hoja = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0]
+  var hoja = obtenerHoja().getSheets()[0]
   var datos = hoja.getDataRange().getValues()
   var salida = []
 
@@ -56,4 +56,17 @@ function alEditar(e) {
 function respuestaJson(objeto) {
   return ContentService.createTextOutput(JSON.stringify(objeto))
     .setMimeType(ContentService.MimeType.JSON)
+}
+
+/**
+ * Devuelve la hoja incluso cuando la app web no tiene una hoja "activa".
+ * Usa la hoja vinculada o, si no, la propiedad SHEET_ID.
+ */
+function obtenerHoja() {
+  var activa = SpreadsheetApp.getActiveSpreadsheet()
+  if (activa) return activa
+
+  var id = PropertiesService.getScriptProperties().getProperty('SHEET_ID')
+  if (!id) throw new Error('Falta la propiedad SHEET_ID del script')
+  return SpreadsheetApp.openById(id)
 }

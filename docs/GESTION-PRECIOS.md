@@ -65,6 +65,7 @@ En Apps Script: **Configuración del proyecto > Propiedades del script > Añadir
 | Propiedad | Valor |
 | --- | --- |
 | `TOKEN` | Una cadena larga y aleatoria (por ejemplo 40+ caracteres). Guárdala. |
+| `SHEET_ID` | El ID de la hoja: en su URL, lo que va entre `/d/` y `/edit`. |
 | `DEPLOY_HOOK` | La URL del *Deploy Hook* de Vercel (paso 5). |
 
 ### 4. Publicar como aplicación web
