@@ -1,4 +1,5 @@
 import menu from '../data/menu.json'
+import preciosGenerados from '../data/precios.generated.json'
 import { SHOW_PRICES } from './config'
 
 export interface Alergeno {
@@ -41,7 +42,17 @@ export interface MenuData {
 
 export const data = menu as unknown as MenuData
 
-export const { establecimiento, categorias, alergenos } = data
+export const { establecimiento, alergenos } = data
+
+const preciosExternos = preciosGenerados as Record<string, number>
+
+export const categorias: MenuCategory[] = data.categorias.map((categoria) => ({
+  ...categoria,
+  items: categoria.items.map((item) => {
+    const precio = preciosExternos[`${categoria.nombre}::${item.nombre}`]
+    return precio != null ? { ...item, precio } : item
+  }),
+}))
 
 export const alergenosList = Object.entries(alergenos).map(([clave, valor]) => ({
   clave,

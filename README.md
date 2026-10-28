@@ -59,13 +59,27 @@ npm run typecheck    # Chequeo de tipos TypeScript
 
 ## Cómo gestionar los precios (variante futura)
 
-El sistema ya está preparado para precios. Cuando los dueños den luz verde:
+El sistema ya está preparado para precios. Hay dos formas:
 
-1. En `src/data/menu.json`, rellena el campo `"precio"` de cada ítem, por ejemplo `"precio": 3.5`.
-2. Activa los precios en el entorno de despliegue con `PUBLIC_SHOW_PRICES=true`.
-3. Redespliega (en Vercel se hace solo al hacer push). El precio aparece con estilo de carta.
+1. **Manual:** rellena `"precio"` en `src/data/menu.json` (por ejemplo `"precio": 3.5`) y activa
+   `PUBLIC_SHOW_PRICES=true`.
+2. **Autogestionada por los dueños (recomendada):** Google Sheets + Apps Script + Deploy Hook de
+   Vercel. Los dueños editan solo la columna *Precio* y la web se actualiza sola, sin tocar código.
+   Guía: [`docs/GESTION-PRECIOS.md`](docs/GESTION-PRECIOS.md) · Script:
+   [`docs/apps-script-precios.gs`](docs/apps-script-precios.gs).
 
-Mientras `PUBLIC_SHOW_PRICES` no sea `true`, **ningún precio se renderiza** aunque existan en el JSON.
+Mientras `PUBLIC_SHOW_PRICES` no sea `true`, **ningún precio se renderiza** aunque existan.
+
+### Fuente de precios en build
+
+- `scripts/fetch-prices.mjs` se ejecuta antes de `dev`, `build` y `typecheck`.
+- Si `PRICES_SOURCE_URL` está definida, descarga los precios de la hoja
+  (`{ precios: [{ categoria, producto, precio }] }`) y genera `src/data/precios.generated.json`
+  (ignorado por git).
+- `src/utils/menu.ts` fusiona esos precios por `categoria + producto`.
+- Si los precios están activos (`PUBLIC_SHOW_PRICES=true`) y la descarga falla, el build se detiene
+  para no publicar precios incompletos.
+- La plantilla editable de la hoja se genera con `npm run export:precios`.
 
 Para editar el contenido del menú (categorías, ítems, descripciones) solo hay que modificar
 `src/data/menu.json`. El script `validate-menu.mjs` valida la estructura en cada build para

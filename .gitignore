@@ -3,6 +3,9 @@ dist/
 node_modules/
 .astro/
 
+# precios generados en build (pueden contener datos de la hoja privada)
+src/data/precios.generated.json
+
 # env
 .env
 .env.production
