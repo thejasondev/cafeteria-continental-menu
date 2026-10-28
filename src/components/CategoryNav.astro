@@ -4,7 +4,8 @@ import { categorias } from '../utils/menu'
 
 <nav
   id="nav-categorias"
-  class="no-print sticky top-[61px] z-30 border-y border-espresso/10 bg-cream/95 backdrop-blur"
+  class="no-print sticky z-30 border-y border-espresso/10 bg-cream/95 backdrop-blur"
+  style="top: var(--header-h, 61px)"
   aria-label="Categorías del menú"
 >
   <ul class="mx-auto flex max-w-5xl items-center gap-2 overflow-x-auto px-4 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -20,33 +21,95 @@ import { categorias } from '../utils/menu'
 </nav>
 
 <script>
+  const header = document.querySelector<HTMLElement>('header')
+  const nav = document.getElementById('nav-categorias')
+  const lista = nav?.querySelector<HTMLElement>('ul')
   const chips = Array.from(document.querySelectorAll<HTMLAnchorElement>('#nav-categorias a[data-observa]'))
-  const sections = Array.from(document.querySelectorAll<HTMLElement>('section[data-categoria]'))
+  const secciones = Array.from(document.querySelectorAll<HTMLElement>('section[data-categoria]'))
+  const ubicacion = document.getElementById('ubicacion')
 
-  if ('IntersectionObserver' in window && sections.length > 0) {
+  if (nav && lista && chips.length > 0 && secciones.length > 0) {
+    let lineaActiva = 0
+    let bloqueoHasta = 0
+
+    const medir = () => {
+      const alturaHeader = header?.getBoundingClientRect().height ?? 0
+      const alturaNav = nav.getBoundingClientRect().height
+      lineaActiva = alturaHeader + alturaNav + 12
+      document.documentElement.style.setProperty('--header-h', `${Math.round(alturaHeader)}px`)
+      document.documentElement.style.setProperty('--scroll-offset', `${Math.round(lineaActiva)}px`)
+    }
+
+    const centrarChip = (chip: HTMLAnchorElement) => {
+      const c = chip.getBoundingClientRect()
+      const u = lista.getBoundingClientRect()
+      if (c.left < u.left || c.right > u.right) {
+        lista.scrollBy({ left: c.left - u.left - 24, behavior: 'smooth' })
+      }
+    }
+
     const activar = (id: string | null) => {
       chips.forEach((chip) => {
-        const esActivo = id != null && chip.dataset.observa === id
-        chip.setAttribute('aria-current', String(esActivo))
-        if (esActivo && !chip.matches(':focus-visible')) {
-          chip.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' })
-        }
+        const activo = id != null && chip.dataset.observa === id
+        chip.setAttribute('aria-current', String(activo))
+        if (activo) centrarChip(chip)
       })
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibles = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
-        if (visibles.length > 0) {
-          const id = visibles[0].target.getAttribute('data-categoria')
-          activar(id)
+    const calcular = () => {
+      if (performance.now() < bloqueoHasta) return
+      let actual: string | null = null
+      for (const seccion of secciones) {
+        if (seccion.getBoundingClientRect().top <= lineaActiva) {
+          actual = seccion.dataset.categoria ?? null
+        } else {
+          break
         }
-      },
-      { rootMargin: '-35% 0px -60% 0px', threshold: [0.05, 0.2, 0.4, 0.6] }
-    )
+      }
+      const alFinal =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4
+      const pasadaUbicacion =
+        ubicacion != null && ubicacion.getBoundingClientRect().top <= lineaActiva
+      if (pasadaUbicacion) {
+        actual = null
+      } else if (alFinal) {
+        actual = secciones[secciones.length - 1]?.dataset.categoria ?? actual
+      }
+      activar(actual)
+    }
 
-    sections.forEach((section) => observer.observe(section))
+    let pendiente = false
+    const alScroll = () => {
+      if (pendiente) return
+      pendiente = true
+      requestAnimationFrame(() => {
+        pendiente = false
+        calcular()
+      })
+    }
+
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        activar(chip.dataset.observa ?? null)
+        bloqueoHasta = performance.now() + 800
+      })
+    })
+
+    window.addEventListener('scroll', alScroll, { passive: true })
+    window.addEventListener('resize', () => {
+      medir()
+      calcular()
+    })
+    window.addEventListener('load', () => {
+      medir()
+      calcular()
+    })
+    document.fonts?.ready.then(() => {
+      medir()
+      calcular()
+    })
+
+    medir()
+    calcular()
   }
 </script>

@@ -10,9 +10,9 @@ interface Props {
 const { categoria, index } = Astro.props
 ---
 
-<section id={`cat-${categoria.id}`} data-categoria={categoria.id} class="anchor-offset scroll-mt-40">
+<section id={`cat-${categoria.id}`} data-categoria={categoria.id}>
   <div class="mx-auto max-w-5xl px-4">
-    <div class={`flex items-start gap-4 ${index === 0 ? '' : 'mt-14 sm:mt-20'}`}>
+    <div class={`flex items-start gap-4 ${index === 0 ? 'mt-12 sm:mt-16' : 'mt-14 sm:mt-20'}`}>
       <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-espresso text-2xl shadow-card" aria-hidden="true">
         {categoria.icono}
       </span>

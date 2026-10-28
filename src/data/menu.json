@@ -7,7 +7,6 @@
     "moluscos": { "emoji": "🐚", "nombre": "Moluscos" },
     "crustaceos": { "emoji": "🦀", "nombre": "Crustáceos" }
   },
-  "notaAlergenos": "Los alérgenos marcados con asterisco (*) han sido deducidos lógicamente por los ingredientes, al no aparecer en el menú impreso.",
   "establecimiento": {
     "nombre": "Cafetería Continental",
     "eslogan": "Comida casera, desayunos y buen café en El Matorral",
@@ -79,7 +78,7 @@
       "nombre": "Ensaladas",
       "icono": "🥗",
       "items": [
-        { "nombre": "Mixta", "alergenos": ["gluten", "huevo", "pescado"], "alergenosDeducidos": ["pescado"] },
+        { "nombre": "Mixta", "alergenos": ["gluten", "huevo", "pescado"] },
         { "nombre": "Continental", "descripcion": "Ensalada, gambas, queso, huevo, atún y cangrejo", "alergenos": ["gluten", "crustaceos", "huevo", "pescado", "lacteos"], "destacado": true }
       ]
     },
@@ -102,8 +101,8 @@
       "icono": "🍟",
       "porcion": "1/2 ración / ración",
       "items": [
-        { "nombre": "Papas Locas", "alergenos": ["gluten", "huevo", "lacteos"], "alergenosDeducidos": ["lacteos"] },
-        { "nombre": "Papas", "descripcion": "Jamón, queso gratinado y tres salsas", "alergenos": ["gluten", "huevo", "lacteos"], "alergenosDeducidos": ["lacteos"] }
+        { "nombre": "Papas Locas", "alergenos": ["gluten", "huevo", "lacteos"] },
+        { "nombre": "Papas", "descripcion": "Jamón, queso gratinado y tres salsas", "alergenos": ["gluten", "huevo", "lacteos"] }
       ]
     },
     {
@@ -112,10 +111,10 @@
       "icono": "🍽️",
       "porcion": "1/2 ración / ración",
       "items": [
-        { "nombre": "Pechuga empanada", "alergenos": ["gluten", "huevo", "lacteos"], "alergenosDeducidos": ["lacteos"] },
+        { "nombre": "Pechuga empanada", "alergenos": ["gluten", "huevo", "lacteos"] },
         { "nombre": "Filete de pescado", "alergenos": ["gluten", "pescado"] },
         { "nombre": "Pepito", "descripcion": "Ternera", "alergenos": ["gluten", "lacteos"] },
-        { "nombre": "Bacon", "descripcion": "Papas fritas, salchicha y huevo", "alergenos": ["gluten", "huevo", "lacteos"], "alergenosDeducidos": ["lacteos"] }
+        { "nombre": "Bacon", "descripcion": "Papas fritas, salchicha y huevo", "alergenos": ["gluten", "huevo", "lacteos"] }
       ]
     },
     {
@@ -129,7 +128,6 @@
           "descripcion": "Arroz congri o blanco, cerdo a la cazuela, carne mechada, yuca con mojo, plátano maduro y chicharrita",
           "detalle": "Postre a elegir (dependerá del postre elegido)",
           "alergenos": ["lacteos", "huevo", "gluten"],
-          "alergenosDeducidos": ["gluten"],
           "destacado": true
         }
       ]
@@ -166,7 +164,7 @@
         { "nombre": "Carajillo", "alergenos": [] },
         { "nombre": "Capuchino", "alergenos": ["lacteos"] },
         { "nombre": "Infusiones", "alergenos": [] },
-        { "nombre": "Cola Cao", "alergenos": ["lacteos", "gluten"], "alergenosDeducidos": ["gluten"] },
+        { "nombre": "Cola Cao", "alergenos": ["lacteos", "gluten"] },
         { "nombre": "Vaso de leche", "alergenos": ["lacteos"] },
         { "nombre": "Vaso de agua natural", "alergenos": [] }
       ]

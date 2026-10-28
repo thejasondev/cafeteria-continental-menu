@@ -13,7 +13,6 @@ export interface MenuItem {
   precio?: number | null
   destacado?: boolean
   alergenos?: string[]
-  alergenosDeducidos?: string[]
 }
 
 export interface MenuCategory {
@@ -36,14 +35,13 @@ export interface Establecimiento {
 
 export interface MenuData {
   alergenos: Record<string, Alergeno>
-  notaAlergenos: string
   establecimiento: Establecimiento
   categorias: MenuCategory[]
 }
 
 export const data = menu as unknown as MenuData
 
-export const { establecimiento, categorias, alergenos, notaAlergenos } = data
+export const { establecimiento, categorias, alergenos } = data
 
 export const alergenosList = Object.entries(alergenos).map(([clave, valor]) => ({
   clave,
@@ -73,5 +71,4 @@ export const obtenerAlergenos = (item: MenuItem) =>
   (item.alergenos ?? []).map((clave) => ({
     clave,
     ...(alergenos[clave] ?? { emoji: '?', nombre: clave }),
-    deducido: item.alergenosDeducidos?.includes(clave) ?? false,
   }))

@@ -10,7 +10,7 @@ Sitio web estático y gratuito (Astro + Tailwind CSS) con el menú de **Cafeter�
 - 100% estático y ultrarrápido (cero JavaScript en el cliente salvo el scrollspy).
 - Menú sin precios por decisión de los dueños; soporte de precios ya integrado y desactivado.
 - **Información de alérgenos**: 6 alérgenos (gluten, huevo, lácteos, pescado, moluscos, crustáceos)
-  mostrados por producto, con leyenda y distinción de los deducidos (`*`).
+  mostrados por producto, con leyenda.
 - Hero con imagen optimizada en WebP.
 - Mapa integrado (embed de Google Maps con carga perezosa) + enlaces "Cómo llegar" que abren Google Maps nativo.
 - Página imprimible `/qr` con el código QR para mesas (SVG vectorial generado en cada build).
@@ -76,10 +76,7 @@ que un error de edición no rompa el sitio.
 - El objeto `alergenos` de `menu.json` define cada alérgeno con `emoji` y `nombre`.
 - Cada ítem lleva `"alergenos": ["gluten", "lacteos", ...]` con las claves válidas, o `[]` si no
   tiene alérgenos destacados (se muestra "Sin alérgenos destacados").
-- Los alérgenos deducidos (no confirmados en el menú impreso) se listan además en
-  `"alergenosDeducidos"` y se muestran con un asterisco, explicado en la leyenda.
-- La leyenda y la nota de deducción se generan desde `notaAlergenos`. El validador comprueba que
-  las claves existen y que `alergenosDeducidos` sea subconjunto de `alergenos`.
+- El validador comprueba que todas las claves de alérgenos existen.
 
 ## Despliegue en Vercel
 

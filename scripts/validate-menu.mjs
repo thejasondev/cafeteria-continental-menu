@@ -38,8 +38,6 @@ if (!alergenos || typeof alergenos !== 'object' || Object.keys(alergenos).length
   }
 }
 
-requireStr(menu, 'menu', 'notaAlergenos')
-
 const categorias = menu?.categorias
 if (!Array.isArray(categorias) || categorias.length === 0) {
   errors.push('"categorias" debe ser un array no vacío')
@@ -74,17 +72,6 @@ if (!Array.isArray(categorias) || categorias.length === 0) {
             item.alergenos.forEach((clave) => {
               if (!clavesAlergenos.has(clave)) {
                 errors.push(`${itemBase}.alergenos contiene una clave inválida: "${clave}"`)
-              }
-            })
-          }
-        }
-        if (item.alergenosDeducidos != null) {
-          if (!Array.isArray(item.alergenosDeducidos)) {
-            errors.push(`${itemBase}.alergenosDeducidos debe ser un array`)
-          } else {
-            item.alergenosDeducidos.forEach((clave) => {
-              if (!item.alergenos?.includes(clave)) {
-                errors.push(`${itemBase}.alergenosDeducidos "${clave}" no figura en alergenos`)
               }
             })
           }

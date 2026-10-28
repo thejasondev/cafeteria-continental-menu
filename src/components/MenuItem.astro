@@ -32,10 +32,10 @@ const listaAlergenos = obtenerAlergenos(item)
             <span
               class="chip-alergeno"
               role="img"
-              title={`Contiene ${a.nombre}${a.deducido ? ' (deducido)' : ''}`}
-              aria-label={`Contiene ${a.nombre}${a.deducido ? ', deducido por los ingredientes' : ''}`}
+              title={`Contiene ${a.nombre}`}
+              aria-label={`Contiene ${a.nombre}`}
             >
-              {a.emoji}{a.deducido && <sup aria-hidden="true">*</sup>}
+              {a.emoji}
             </span>
           </li>
         ))}
